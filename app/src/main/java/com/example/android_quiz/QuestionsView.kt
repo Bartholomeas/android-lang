@@ -75,7 +75,7 @@ class QuestionsView : AppCompatActivity(), View.OnClickListener {
         progressBar.progress = mCurrentPosition
         tvProgress.text = "$mCurrentPosition" + "/" + progressBar.max
         tvQuestion.text = question.question
-        ivImage.setImageResource(question.image)
+        question.image?.let { ivImage.setImageResource(it) }
 
         val tvFirstAnswer = findViewById<TextView>(R.id.tv_first_answer)
         val tvSecondAnswer = findViewById<TextView>(R.id.tv_second_answer)

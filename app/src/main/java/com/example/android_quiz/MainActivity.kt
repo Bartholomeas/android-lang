@@ -10,13 +10,13 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatEditText
 
-@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val beginButton = findViewById<Button>(R.id.btn_begin)
+        val learnButton = findViewById<Button>(R.id.btn_learn)
         val questionsNum = findViewById<AppCompatEditText>(R.id.questions_num)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
@@ -37,5 +37,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        learnButton.setOnClickListener{
+            val intent = Intent(this, GrammarTimeActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -19,7 +19,7 @@ object Questions {
  fun getNounsQuestions(numQuestions: Int): ArrayList<Question> {
     val allQuestionsList = ArrayList<Question>()
     val que1 = Question(1, "Which of these words is a noun?",
-        R.drawable.croisant,
+        null,
         "Jump",
         "Quickly",
         "Beautiful",
@@ -28,7 +28,7 @@ object Questions {
     )
 
     val que2 = Question(2, "Which word is the plural form of 'mouse'?",
-        R.drawable.croisant,
+        null,
         "Mices",
         "Mouses",
         "Mice",
@@ -37,7 +37,7 @@ object Questions {
     )
 
     val que3 = Question(3, "What is the noun in the sentence 'She reads books'?",
-        R.drawable.croisant,
+        null,
         "She",
         "Reads",
         "Books",
@@ -46,7 +46,7 @@ object Questions {
     )
 
     val que4 = Question(4, "What type of noun is 'London'?",
-        R.drawable.croisant,
+        null,
         "Proper noun",
         "Common noun",
         "Abstract noun",
@@ -55,7 +55,7 @@ object Questions {
     )
 
     val que5 = Question(5, "What is the collective noun for 'cows'?",
-        R.drawable.croisant,
+        null,
         "Group",
         "Herd",
         "Swarm",
@@ -77,7 +77,7 @@ object Questions {
      fun getBodyPartsQuestions(numQuestions: Int): ArrayList<Question> {
         val allQuestionsList = ArrayList<Question>()
         val que1 = Question(1, "Which of these is not a part of the human body?",
-            R.drawable.croisant,
+            null,
             "Elbow",
             "Ankle",
             "Paw",
@@ -86,7 +86,7 @@ object Questions {
         )
 
         val que2 = Question(2, "What do you use to hear?",
-            R.drawable.croisant,
+            null,
             "Nose",
             "Eyes",
             "Ears",
@@ -95,7 +95,7 @@ object Questions {
         )
 
         val que3 = Question(3, "What is the part of the body where the heart is located?",
-            R.drawable.croisant,
+            null,
             "Head",
             "Chest",
             "Abdomen",
@@ -104,7 +104,7 @@ object Questions {
         )
 
         val que4 = Question(4, "Which of these is the smallest bone in the human body?",
-            R.drawable.croisant,
+            null,
             "Femur",
             "Humerus",
             "Stapes",
@@ -113,7 +113,7 @@ object Questions {
         )
 
         val que5 = Question(5, "What do you call the joint between the upper arm and the forearm?",
-            R.drawable.croisant,
+            null,
             "Elbow",
             "Wrist",
             "Knee",
@@ -135,7 +135,7 @@ object Questions {
         val allQuestionsList = ArrayList<Question>()
 
         val que1 = Question(1, "Which sentence is in the Present Simple tense?",
-            R.drawable.croisant,
+            null,
             "I am running a marathon",
             "I have run a marathon",
             "I ran a marathon",
@@ -144,7 +144,7 @@ object Questions {
         )
 
         val que2 = Question(2, "What is the third person singular form of 'do' in the present tense?",
-            R.drawable.croisant,
+            null,
             "Does",
             "Do",
             "Did",
@@ -153,7 +153,7 @@ object Questions {
         )
 
         val que3 = Question(3, "How would you express a routine in the Present Simple tense?",
-            R.drawable.croisant,
+            null,
             "I have breakfast at 7am",
             "I had breakfast at 7am",
             "I am having breakfast at 7am",
@@ -162,7 +162,7 @@ object Questions {
         )
 
         val que4 = Question(4, "How would you form a negative sentence in the Present Simple tense?",
-            R.drawable.croisant,
+            null,
             "I not play tennis",
             "I don't play tennis",
             "I doesn't play tennis",
@@ -171,7 +171,7 @@ object Questions {
         )
 
         val que5 = Question(5, "Which of the following statements is generally true and hence expressed in the Present Simple tense?",
-            R.drawable.croisant,
+            null,
             "Water boils at 100 degrees Celsius",
             "Water is boiling at 100 degrees Celsius",
             "Water boiled at 100 degrees Celsius",
