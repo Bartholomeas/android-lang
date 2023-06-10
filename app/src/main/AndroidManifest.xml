@@ -12,9 +12,13 @@
         android:theme="@style/Theme.Androidquiz"
         tools:targetApi="31">
         <activity
-            android:name=".QuestionsView"
+            android:name=".FinalViewActivity"
             android:screenOrientation="portrait"
-        ></activity>
+            android:theme="@style/NoActionBarTheme"
+            android:exported="false" />
+        <activity
+            android:name=".QuestionsView"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

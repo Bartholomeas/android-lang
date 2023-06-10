@@ -1,5 +1,6 @@
 package com.example.android_quiz
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
@@ -7,24 +8,33 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.ContextCompat
 
 class QuestionsView : AppCompatActivity(), View.OnClickListener {
 
     private var mCurrentPosition: Int = 1
     private var mQuestionsList: ArrayList<Question>? = null
-
     private var mSelectedOptionPosition: Int = 0
+    private var mCorrectAnswers: Int = 0
+    private var mAllQuestions: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_questions_view)
 
-        mQuestionsList = Questions.getQuestions()
+
+        val category = intent.getStringExtra(Questions.category)
+        mAllQuestions = intent.getStringExtra(Questions.totalQuestions)
+        val numQuestions = mAllQuestions?.toIntOrNull() ?: 1
+
+//        mQuestionsList = Questions.getQuestions(numQuestions)
+        mQuestionsList = when(category) {
+            "Nouns" -> Questions.getNounsQuestions(numQuestions)
+            "Body Parts" -> Questions.getBodyPartsQuestions(numQuestions)
+            "Present Simple" -> Questions.getPresentSimpleQuestions(numQuestions)
+            else -> ArrayList()
+        }
         setQuestion()
 
          val tvFirstAnswer = findViewById<TextView>(R.id.tv_first_answer)
@@ -43,16 +53,25 @@ class QuestionsView : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setQuestion() {
-        mCurrentPosition = 1
         val question = mQuestionsList!![mCurrentPosition - 1]
 
         defaultOptionsView()
+
+        val submitButton = findViewById<Button>(R.id.btn_submit)
+
+        if(mCurrentPosition == mQuestionsList!!.size){
+            submitButton.text = "Następne pytanie"
+        } else {
+            submitButton.text = "Zakończ"
+
+        }
 
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
         val tvProgress = findViewById<TextView>(R.id.tv_progress)
         val tvQuestion = findViewById<TextView>(R.id.tv_question)
         val ivImage = findViewById<ImageView>(R.id.iv_image)
 
+        progressBar.max = mQuestionsList!!.size
         progressBar.progress = mCurrentPosition
         tvProgress.text = "$mCurrentPosition" + "/" + progressBar.max
         tvQuestion.text = question.question
@@ -131,6 +150,8 @@ class QuestionsView : AppCompatActivity(), View.OnClickListener {
         val tvThirdAnswer = findViewById<TextView>(R.id.tv_third_answer)
         val tvFourthAnswer = findViewById<TextView>(R.id.tv_fourth_answer)
 
+        val submitButton = findViewById<Button>(R.id.btn_submit)
+
         when(p0?.id) {
             R.id.tv_first_answer -> {
                 selectedOptionView(tvFirstAnswer, 1)
@@ -148,6 +169,33 @@ class QuestionsView : AppCompatActivity(), View.OnClickListener {
             R.id.btn_submit -> {
             if(mSelectedOptionPosition == 0) {
                 mCurrentPosition ++
+
+                when {
+                    mCurrentPosition <= mQuestionsList!!.size ->{
+                        setQuestion()
+                    } else ->{
+                    val intent = Intent(this, FinalViewActivity::class.java)
+                    intent.putExtra(Questions.totalQuestions, mAllQuestions)
+                    intent.putExtra(Questions.correctAnswers, mCorrectAnswers)
+                    intent.putExtra(Questions.totalQuestions, mQuestionsList!!.size)
+                    startActivity(intent)
+                    }
+                }
+            } else {
+                val question = mQuestionsList?.get(mCurrentPosition-1)
+                if(question!!.correctAnswer != mSelectedOptionPosition) {
+                    setCorrectAnswer(mSelectedOptionPosition, R.drawable.wrong_answer_bg)
+                } else {
+                    mCorrectAnswers++
+                }
+                setCorrectAnswer(question.correctAnswer, R.drawable.correct_answer_bg)
+
+                if(mCurrentPosition == mQuestionsList!!.size){
+                    submitButton.text = "Zakończ quiz"
+                } else {
+                    submitButton.text = "Przejdź do kolejnego pytania"
+                }
+                mSelectedOptionPosition = 0
             }
 
             }
