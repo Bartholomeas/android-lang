@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val beginButton = findViewById<Button>(R.id.btn_begin)
-        val learnButton = findViewById<Button>(R.id.btn_learn)
+        val learnButton = findViewById<Button>(R.id.btn_learn_grammar)
+        val learnWordsButton = findViewById<Button>(R.id.btn_learn_words)
         val questionsNum = findViewById<AppCompatEditText>(R.id.questions_num)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         learnButton.setOnClickListener{
             val intent = Intent(this, GrammarTimeActivity::class.java)
+            startActivity(intent)
+        }
+        learnWordsButton.setOnClickListener{
+            val intent = Intent(this, VocabulariesActivity::class.java)
             startActivity(intent)
         }
     }
